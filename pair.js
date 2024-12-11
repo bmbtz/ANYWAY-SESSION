@@ -70,7 +70,7 @@ ______________________________________
 ║❒ *Repo:* _https://github.com/anywaytech2/ANYWAY-MD-V1_
 ║❒ *WaGroup:* _https://chat.whatsapp.com/JpaDLilaPx31vSbaUp1XbS_
 ║❒ *WaChannel:* _https://whatsapp.com/channel/0029VagWQ255q08VTCRQKP09_
-║❒ *Plugins:* _https://github.com/Kingjux/venocyber-md-plugins_
+║❒ *Plugins:* _https://github.com/anywaytech2_
 ╚══════════════════════╝ 
 _____________________________________
 
