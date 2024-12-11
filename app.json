@@ -1,9 +1,9 @@
 {
-    "name": "VENOCYBER MD session",
-    "description": "VENOCYBER-MD WA bot, Created by Venocyber King jux to simplify your digital lives",
+    "name": "𝐀𝐍𝐘𝐖𝐀𝐘 𝐌𝐃 session",
+    "description": "𝐀𝐍𝐘𝐖𝐀𝐘-MD WA bot, Created by 𝐀𝐍𝐘𝐖𝐀𝐘 𝐓𝐄𝐂𝐇 to simplify your digital lives",
     "logo": "https://telegra.ph/file/12b0fb245e6b8ba4bf718.jpg",
-    "repository": "https://github.com/kingjux/Venocyber-Md-Session",
-    "keywords": ["VenocyberMd"],
+    "repository": "https://github.com/anywaytech2/ANYWAY-MD-V1-Session",
+    "keywords": ["𝐀𝐍𝐘𝐖𝐀𝐘 𝐌𝐃"],
     "success_url": "/", 
     "buildpacks": [{ "url": "https://github.com/heroku/heroku-buildpack-nodejs#latest" } ],
     "env": {      
