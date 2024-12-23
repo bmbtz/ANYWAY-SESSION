@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>ANYWAYMDSession</title>
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       display: flex;
@@ -12,80 +12,120 @@
       justify-content: center;
       height: 100vh;
       margin: 0;
-      background-color: blue;
-    }
-
-    .btn {
-      --color: #e5f5f1;
-      --color2: rgb(0, 0, 0);
-      width: 200px;
-      padding: 0.8em 1.75em;
-      background-color: red;
-      border-radius: 6px;
-      border: .3px solid var(--color);
-      transition: .5s;
-      position: relative;
       overflow: hidden;
-      cursor: pointer;
-      z-index: 1;
-      font-weight: 300;
-      font-size: 17px;
       font-family: 'Roboto', 'Segoe UI', sans-serif;
-      text-transform: uppercase;
-      color: var(--color);
-      margin-bottom: 24px;
+      color: #fff;
     }
 
-    .btn::after, .btn::before {
+    /* Subtle Animated Background */
+    body::before {
       content: '';
-      display: block;
-      height: 100%;
-      width: 100%;
-      transform: skew(90deg) translate(-50%, -50%);
       position: absolute;
-      inset: 50%;
-      left: 25%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://files.catbox.moe/j1fxdz.jpeg') no-repeat center center fixed;
+      background-size: cover;
       z-index: -1;
-      transition: .5s ease-out;
-      background-color: var(--color);
+      animation: zoomBackground 20s ease-in-out infinite;
     }
 
-    .btn::before {
-      top: -50%;
-      left: -25%;
-      transform: skew(90deg) rotate(180deg) translate(-50%, -50%);
+    @keyframes zoomBackground {
+      0%, 100% {
+        transform: scale(1.1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
     }
 
-    .btn:hover::before {
-      transform: skew(45deg) rotate(180deg) translate(-50%, -50%);
+    /* Typing Animation for Heading */
+    #heading {
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 30px;
     }
 
-    .btn:hover::after {
-      transform: skew(45deg) translate(-50%, -50%);
+    .typing {
+      display: inline-block;
+      border-right: 2px solid #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 4s steps(100) infinite, blink .75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
+
+    @keyframes blink {
+      from {
+        border-color: transparent;
+      }
+      to {
+        border-color: white;
+      }
+    }
+
+    /* Button Styling */
+    .btn {
+      width: 150px;
+      padding: 0.5em 1.5em;
+      background-color: rgba(255, 255, 255, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      border-radius: 6px;
+      font-weight: 300;
+      font-size: 15px;
+      text-transform: uppercase;
+      color: #fff;
+      margin: 5px;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
     }
 
     .btn:hover {
-      color: var(--color2);
+      background-color: rgba(255, 255, 255, 0.5);
+      color: #000;
+      transform: scale(1.05);
     }
 
-    .btn:active {
-      filter: brightness(.7);
-      transform: scale(.98);
+    /* Large Button Styling */
+    .btn-large {
+      width: 250px;
+      padding: 1em 2em;
+      font-size: 18px;
+      background-color: #ff0000;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+    }
+
+    .btn-large:hover {
+      background-color: #cc0000;
     }
   </style>
 </head>
 <body>
- Hello 👋 There and welcome to  ANYWAY MD 🚘🚘🧚
- <button onclick="window.open(`https://venocyber-md-qr.onrender.com`)" class="btn">QR Code</button>
-  <button onclick="window.open(`/pair`)" class="btn">Pair Code</button>
-  <button onclick="window.open(`https://github.com/anywaytech2/ANYWAY-MD-V1`)" class="btn">Bot Repo</button>
-  <button onclick="window.open(`https://github.com/anywaytech2-plugins`)" class="btn">Plugins</button>
-  <button onclick="window.open(`t.me/Anywaytech`)" class="btn">Contact Me</button>
-  <button onclick="window.open(`https://chat.whatsapp.com/JpaDLilaPx31vSbaUp1XbS`)" class="btn">Wa Group</button>
-  <button onclick="window.open(`https://whatsapp.com/channel/0029VagWQ255q08VTCRQKP09`)" class="btn">Wa Channel</button>
-  <button onclick="window.open(`https://www.instagram.com/anywaytech01/profilecard/?igsh=cW9ycWd0bGo3aG1p`)" class="btn">Instagram</button>
-  <button onclick="window.open(`https://youtube.com/@anyway-tech?si=12V7rOPscbntLzU4`)" class="btn">Youtube</button>
-  
+  <div id="heading">
+    <span class="typing">🚘🚘ANYWAY MD🚘🚘🧚</span>
+    <h6>ANYWAY MD Created by Mr Anyway</h6>
+  </div>
 
+  <button onclick="window.open('https://venocyber-md-qr.onrender.com')" class="btn btn-large">QR Code</button>
+  <button onclick="window.open('/pair')" class="btn btn-large">Pair Code</button>
+  <button onclick="window.open('https://github.com/anywaytech2/ANYWAY-MD-V1')" class="btn">Bot Repo</button>
+  <button onclick="window.open('t.me/Anywaytech')" class="btn">Contact Me</button>
+  <button onclick="window.open('https://chat.whatsapp.com/JpaDLilaPx31vSbaUp1XbS')" class="btn">Wa Group</button>
+  <button onclick="window.open('https://whatsapp.com/channel/0029VagWQ255q08VTCRQKP09')" class="btn">Wa Channel</button>
+  <button onclick="window.open('https://www.instagram.com/anywaytech01/profilecard/?igsh=cW9ycWd0bGo3aG1p')" class="btn">Instagram</button>
+  <button
+onclick="window.open('https://youtube.com/@anyway-tech?si=12V7rOPscbntLzU4')" class="btn">YouTube</button>
 </body>
 </html>
