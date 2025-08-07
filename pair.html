@@ -1,191 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pair Code</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <meta charset="UTF-8" />
+  <title>ANYWAY XMD PAIRING CODE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
-      background: url('https://files.catbox.moe/hr8fm0.png') no-repeat center center fixed;
-      background-size: cover;
-      font-family: Arial, sans-serif;
-      color: white;
-      overflow: hidden;
-    }
-
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .box {
-      width: 320px;
-      padding: 20px;
+      color: #fff;
       position: relative;
+    }
+    /* Moving background using the provided image */
+    body::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: -30%;
+      width: 160%;
+      height: 160%;
+      background: url('https://files.catbox.moe/342tl3.jpeg') center/cover no-repeat;
+      filter: brightness(0.4) contrast(1.2);
+      animation: slide 20s linear infinite;
+      z-index: -1;
+    }
+    @keyframes slide {
+      0% { transform: translate(0, 0); }
+      50% { transform: translate(-10%, -10%) rotate(2deg); }
+      100% { transform: translate(0, 0); }
+    }
+    
+    .box {
+      background: rgba(0,0,0,0.6);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.8);
       text-align: center;
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-      animation: float 3s ease-in-out infinite;
+      width: 320px;
     }
 
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
+    h1 { font-size: 1.8rem; margin-bottom: 0.5rem; color: #00ffae; }
+    p { margin-bottom: 1rem; color: #ddd; }
+    input[type='tel'] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      outline: none;
     }
-
-    h3, h6 {
-      margin: 0;
-      animation: fadeInUp 2s ease-out forwards;
-      opacity: 0;
+    button {
+      padding: 12px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
     }
-
-    h3 {
-      animation-delay: 0.5s;
-    }
-
-    h6 {
-      animation-delay: 1s;
-    }
-
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .input-container {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-top: 20px;
+    #getCodeBtn {
+      background: #00ffae;
+      color: #000;
       width: 100%;
     }
-
-    .input-container input {
-      flex: 1;
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
-      background: rgba(255, 255, 255, 0.9);
-      color: #000;
-      font-size: 16px;
+    #copySection {
+      margin-top: 1.5rem;
+      display: none;
     }
-
-    .input-container input:focus {
-      outline: none;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    #pairCode {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      word-break: break-all;
     }
-
-    .input-container button {
-      padding: 10px 15px;
-      border: none;
-      background: #4caf50;
-      color: white;
-      font-weight: bold;
-      text-transform: uppercase;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background 0.3s ease;
+    #copyBtn {
+      background: #444;
+      color: #fff;
+      margin-right: 8px;
     }
-
-    .input-container button:hover {
-      background: #45a049;
-    }
-
-    #waiting-message {
-      margin-top: 10px;
-      opacity: 0;
-      animation: fadeInUp 1.5s ease-out forwards;
-    }
-
-    @media (max-width: 500px) {
-      .box {
-        width: 90%;
-      }
-
-      .input-container {
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .input-container button {
-        width: 100%;
-      }
+    #copySuccess {
+      color: lime;
+      font-size: 0.9rem;
+      display: none;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="main">
-      <div class="box" id="box">
-        <div id="text">
-          <i class="fa fa-user"></i>
-          <p>
-            <h3 class="centered-text">ANYWAY MD PAIRING CODE</h3>
-            <h6>Made By Anyway Tech 😎</h6>
-            <h6>Enter Your Number with Country Code:</h6>
-            <div class="input-container">
-              <input placeholder="255678892xxx" type="number" id="number" name="">
-              <button id="submit">Submit</button>
-            </div>
-            <a id="waiting-message" class="centered-text" style="display: none;">Please wait a while...</a>
-            <main id="pair"></main>
-          </p>
-        </div>
-      </div>
+  <div class="box">
+    <h1>ANYWAY XMD PAIRING CODE</h1>
+    <p>Enter WhatsApp number (with country code)</p>
+    <input type="tel" id="numberInput" placeholder="255712345678" />
+    <button id="getCodeBtn">Get Pair Code</button>
+
+    <div id="copySection">
+      <div id="pairCode"></div>
+      <button id="copyBtn">Copy Code</button>
+      <span id="copySuccess">Copied!</span>
     </div>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
-    let a = document.getElementById("pair");
-    let b = document.getElementById("submit");
-    let c = document.getElementById("number");
+    const getCodeBtn = document.getElementById('getCodeBtn');
+    const numberInput = document.getElementById('numberInput');
+    const copySection = document.getElementById('copySection');
+    const pairCode = document.getElementById('pairCode');
+    const copyBtn = document.getElementById('copyBtn');
+    const copySuccess = document.getElementById('copySuccess');
 
-    async function Copy() {
-      let text = document.getElementById("copy").innerText;
-      let obj = document.getElementById("copy");
-      await navigator.clipboard.writeText(obj.innerText.replace('CODE: ', ''));
-      obj.innerText = "COPIED";
-      obj.style = "color:blue;font-weight:bold";
-      setTimeout(() => {
-        obj.innerText = text;
-        obj.style = "color:white;font-weight:bold";
-      }, 500);
-    }
-
-    b.addEventListener("click", async (e) => {
-      e.preventDefault();
-      if (!c.value) {
-        a.innerHTML = '<a style="color:white;font-weight:bold">Enter your WhatsApp number with Country Code</a><br><br>';
-      } else if (c.value.replace(/[^0-9]/g, "").length < 11) {
-        a.innerHTML = '<a style="color:red;font-weight:bold">Invalid Number</a><br><br>';
-      } else {
-        const Venocyber_Tech = c.value.replace(/[^0-9]/g, "");
-        c.type = "text";
-        c.value = "+" + Venocyber_Tech;
-        c.style = "color:black;font-size:20px";
-        a.innerHTML = '<a style="color:white;font-weight:bold">Please Wait...</a><br><br>';
-        let { data } = await axios(`/code?number=${Venocyber_Tech}`);
-        let code = data.code || "Service Unavailable";
-        a.innerHTML = '<font id="copy" onclick="Copy()" style="color:red;font-weight:bold" size="5">CODE: <span style="color:white;font-weight:bold">' + code + '</span></font><br><br>';
+    getCodeBtn.addEventListener('click', async () => {
+      const num = numberInput.value.trim().replace(/\\D/g,'');
+      if (!num || num.length < 8) {
+        alert('Enter a valid WhatsApp number');
+        return;
       }
+      try {
+        const res = await axios.get(`/code?number=${num}`);
+        const code = res.data.code ?? 'Unavailable';
+        pairCode.textContent = code;
+        copySection.style.display = 'block';
+        copySuccess.style.display = 'none';
+      } catch {
+        alert('Failed to retrieve code. Try again.');
+      }
+    });
+
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(pairCode.textContent).then(() => {
+        copySuccess.style.display = 'inline';
+        setTimeout(() => copySuccess.style.display = 'none', 2000);
+      });
     });
   </script>
 </body>
