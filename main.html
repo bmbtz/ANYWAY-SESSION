@@ -1,131 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>ANYWAYMDSession</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      overflow: hidden;
-      font-family: 'Roboto', 'Segoe UI', sans-serif;
-      color: #fff;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ANYWAY XMD Session Portal</title>
+<!-- Font Awesome CDN for icons -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
-    /* Subtle Animated Background */
-    body::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('https://files.catbox.moe/qaztam.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: inherit;
+    background-size: cover;
+    filter: brightness(0.35) saturate(1.1);
+    animation: zoom 25s ease-in-out infinite;
+    z-index: -1;
+  }
+
+  @keyframes zoom {
+    0%, 100% { transform: scale(1.1);}
+    50% { transform: scale(1.2);}
+  }
+
+  .container {
+    max-width: 380px;
+    width: 90vw;
+    background: rgba(0,0,0,0.45);
+    padding: 30px 20px 40px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+    text-align: center;
+  }
+
+  .logo {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px auto;
+    background: url('https://files.catbox.moe/oyw1oa.jpeg') no-repeat center/contain;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #00ff6aaa;
+  }
+
+  h1 {
+    font-weight: 600;
+    font-size: 2.4rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid #00ff6a;
+    animation:
+      typing 4s steps(25) infinite,
+      blink 0.7s step-end infinite;
+  }
+
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  @keyframes blink {
+    50% { border-color: transparent; }
+  }
+
+  .subtitle {
+    font-weight: 500;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #a0f9a0;
+    margin-bottom: 30px;
+    letter-spacing: 0.05em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .main-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 30px;
+  }
+
+  .main-actions .btn-primary {
+    width: 100%;
+    max-width: 320px;
+    padding: 16px 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    border-radius: 40px;
+    box-shadow: 0 5px 20px rgba(0, 255, 106, 0.8);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  .main-actions .btn-primary:hover {
+    background-color: #00c94d;
+    box-shadow: 0 8px 30px rgba(0, 201, 77, 1);
+    transform: scale(1.05);
+    color: #000;
+  }
+
+  .links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    justify-items: center;
+  }
+
+  .links .btn-secondary {
+    width: 140px;
+    padding: 10px 12px;
+    font-size: 1rem;
+    border-radius: 30px;
+    font-weight: 600;
+    border: 2px solid #00ff6a;
+    background-color: transparent;
+    color: #00ff6a;
+    box-shadow: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 0.05em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .links .btn-secondary:hover {
+    background-color: #00ff6a;
+    color: #000;
+    box-shadow: 0 4px 15px rgba(0, 255, 106, 0.7);
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 400px) {
+    h1 {
+      font-size: 1.8rem;
+    }
+    .logo {
+      width: 90px;
+      height: 90px;
+      margin-bottom: 15px;
+    }
+    .main-actions .btn-primary {
+      max-width: 100%;
+      font-size: 1.1rem;
+    }
+    .links {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+    .links .btn-secondary {
       width: 100%;
-      height: 100%;
-      background: url('https://files.catbox.moe/qaztam.png') no-repeat center center fixed;
-      background-size: cover;
-      z-index: -1;
-      animation: zoomBackground 20s ease-in-out infinite;
+      max-width: 100%;
+      font-size: 0.95rem;
     }
+  }
 
-    @keyframes zoomBackground {
-      0%, 100% {
-        transform: scale(1.1);
-      }
-      50% {
-        transform: scale(1.2);
-      }
-    }
-
-    /* Typing Animation for Heading */
-    #heading {
-      font-size: 2rem;
-      font-weight: bold;
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .typing {
-      display: inline-block;
-      border-right: 2px solid #fff;
-      white-space: nowrap;
-      overflow: hidden;
-      animation: typing 4s steps(100) infinite, blink .75s step-end infinite;
-    }
-
-    @keyframes typing {
-      from {
-        width: 0;
-      }
-      to {
-        width: 100%;
-      }
-    }
-
-    @keyframes blink {
-      from {
-        border-color: transparent;
-      }
-      to {
-        border-color: white;
-      }
-    }
-
-    /* Button Styling */
-    .btn {
-      width: 150px;
-      padding: 0.5em 1.5em;
-      background-color: rgba(255, 255, 255, 0.2);
-      border: 2px solid rgba(255, 255, 255, 0.5);
-      border-radius: 6px;
-      font-weight: 300;
-      font-size: 15px;
-      text-transform: uppercase;
-      color: #fff;
-      margin: 5px;
-      transition: all 0.3s ease-in-out;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      background-color: rgba(255, 255, 255, 0.5);
-      color: #000;
-      transform: scale(1.05);
-    }
-
-    /* Large Button Styling */
-    .btn-large {
-      width: 250px;
-      padding: 1em 2em;
-      font-size: 18px;
-      background-color: #ff0000;
-      color: #fff;
-      font-weight: bold;
-      border: none;
-    }
-
-    .btn-large:hover {
-      background-color: #cc0000;
-    }
-  </style>
+  footer {
+    color: #00ff6aaa;
+    font-size: 0.8rem;
+    margin-top: 15px;
+    text-align: center;
+    user-select: none;
+  }
+</style>
 </head>
 <body>
-  <div id="heading">
-    <span class="typing">🚘🚘ANYWAY MD🚘🚘🧚</span>
-    <h6>ANYWAY MD Created by Mr Anyway</h6>
-  </div>
+  <div class="container" role="main" aria-label="ANYWAY XMD session portal">
+    <div class="logo" aria-label="ANYWAY XMD Logo"></div>
+    <h1>ANYWAY XMD</h1>
+    <div class="subtitle">Created by Mr Anyway</div>
 
-  <button onclick="window.open('https://venocyber-md-qr.onrender.com')" class="btn btn-large">QR Code</button>
-  <button onclick="window.open('/pair')" class="btn btn-large">Pair Code</button>
-  <button onclick="window.open('https://github.com/anywaytech2/ANYWAY-MD-V1')" class="btn">Bot Repo</button>
-  <button onclick="window.open('t.me/Anywaytech')" class="btn">Contact Me</button>
-  <button onclick="window.open('https://chat.whatsapp.com/JpaDLilaPx31vSbaUp1XbS')" class="btn">Wa Group</button>
-  <button onclick="window.open('https://whatsapp.com/channel/0029VagWQ255q08VTCRQKP09')" class="btn">Wa Channel</button>
-  <button onclick="window.open('https://www.instagram.com/anywaytech01/profilecard/?igsh=cW9ycWd0bGo3aG1p')" class="btn">Instagram</button>
-  <button
-onclick="window.open('https://youtube.com/@anyway-tech?si=12V7rOPscbntLzU4')" class="btn">YouTube</button>
+    <div class="main-actions">
+      <button class="btn-primary" onclick="window.open('https://venocyber-md-qr.onrender.com', '_blank')">
+        <i class="fas fa-qrcode"></i> QR Code
+      </button>
+      <button class="btn-primary" onclick="window.open('/pair', '_self')">
+        <i class="fas fa-link"></i> Pair Code
+      </button>
+    </div>
+
+    <div class="links">
+      <button class="btn-secondary" onclick="window.open('https://github.com/anywaytech2/ANYWAY-XMD-AI-', '_blank')">
+        <i class="fab fa-github"></i> Bot Repo
+      </button>
+      <button class="btn-secondary" onclick="window.open('https://t.me/Anywaytech', '_blank')">
+        <i class="fab fa-telegram"></i> Contact Me
+      </button>
+      <button class="btn-secondary" onclick="window.open('https://anywayboost.com', '_blank')">
+        <i class="fas fa-globe"></i> Website
+      </button>
+      <button class="btn-secondary" onclick="window.open('https://whatsapp.com/channel/0029VagWQ255q08VTCRQKP09', '_blank')">
+        <i class="fab fa-whatsapp"></i> Wa Channel
+      </button>
+      <button class="btn-secondary" onclick="window.open('https://www.instagram.com/anywaytech01/profilecard/?igsh=cW9ycWd0bGo3aG1p', '_blank')">
+        <i class="fab fa-instagram"></i> Instagram
+      </button>
+      <button class="btn-secondary" onclick="window.open('https://youtube.com/@anyway-tech?si=12V7rOPscbntLzU4', '_blank')">
+        <i class="fab fa-youtube"></i> YouTube
+      </button>
+    </div>
+  </div>
+  <footer>© 2025 ANYWAY TECH — Made with 🤍</footer>
 </body>
 </html>
