@@ -5,7 +5,7 @@ const express = require('express');
 const fs = require('fs');
 const pino = require("pino");
 const {
-    default: Venocyber_Tech,
+    default: Anyway_Tech,
     useMultiFileAuthState,
     delay,
     makeCacheableSignalKeyStore,
@@ -26,11 +26,11 @@ router.get('/', async (req, res) => {
     const id = makeid();
     let num = req.query.number;
 
-    async function VENOCYBER_MD_PAIR_CODE() {
+    async function ANYWAY_MD_PAIR_CODE() {
         const { state, saveCreds } = await useMultiFileAuthState(`./temp/${id}`);
 
         try {
-            let conn = Venocyber_Tech({
+            let conn = Anyway_Tech({
                 auth: {
                     creds: state.creds,
                     keys: makeCacheableSignalKeyStore(state.keys, pino({ level: "fatal" }).child({ level: "fatal" })),
@@ -103,7 +103,7 @@ router.get('/', async (req, res) => {
                     lastDisconnect.error.output.statusCode != 401
                 ) {
                     await delay(10000);
-                    VENOCYBER_MD_PAIR_CODE();
+                    ANYWAY_MD_PAIR_CODE();
                 }
             });
 
@@ -116,7 +116,7 @@ router.get('/', async (req, res) => {
         }
     }
 
-    return await VENOCYBER_MD_PAIR_CODE();
+    return await ANYWAY_MD_PAIR_CODE();
 });
 
 module.exports = router;
