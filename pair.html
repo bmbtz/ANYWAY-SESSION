@@ -1,130 +1,339 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ANYWAY MD PAIRING CODE</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ANYWAY MD - Pairing</title>
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: url('https://files.catbox.moe/342tl3.jpeg') no-repeat center center fixed;
-      background-size: cover;
-      color: white;
-      text-align: center;
-      padding: 20px;
+    :root{
+      --yellow:#f1c40f;
+      --green:#27ae60;
+      --dark:#2d3436;
+      --muted:#6b7280;
+      --card:#ffffff;
+      --bg:#fffbea;
+      --btn-radius:12px;
+      --maxw:520px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--dark);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
-    .container {
-      background: rgba(0, 0, 0, 0.6);
-      padding: 30px;
-      border-radius: 15px;
-      max-width: 400px;
-      margin: auto;
+    header{
+      background: linear-gradient(90deg,var(--yellow), #9ae6b4);
+      color: #111;
+      padding:18px 12px;
+      text-align:center;
+      font-weight:700;
+      font-size:18px;
     }
 
-    h1 {
-      font-size: 26px;
-      margin-bottom: 10px;
-      color: #ffcc00;
+    .wrap{
+      max-width:var(--maxw);
+      margin:28px auto;
+      padding:20px;
+      background:var(--card);
+      border-radius:14px;
+      box-shadow:0 8px 30px rgba(18,38,63,0.08);
     }
 
-    p {
-      font-size: 14px;
-      margin-bottom: 20px;
+    h2{
+      margin:0 0 10px 0;
+      color:var(--green);
+      font-size:20px;
+    }
+    p.lead{
+      margin:0 0 18px 0;
+      color:var(--muted);
+      font-size:14px;
     }
 
-    input[type="text"] {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      font-size: 16px;
+    form.row{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      margin-bottom:14px;
+      flex-wrap:wrap;
     }
 
-    button {
-      padding: 12px 20px;
-      border: none;
-      border-radius: 8px;
-      background-color: #00cc66;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-      margin: 5px;
-      transition: 0.3s ease;
+    input[type="text"]{
+      flex:1;
+      min-width:180px;
+      padding:12px 14px;
+      border-radius:10px;
+      border:1px solid #e6e6e6;
+      font-size:15px;
     }
 
-    button:hover {
-      background-color: #00994d;
+    button.primary{
+      background:var(--green);
+      color:#fff;
+      border:none;
+      padding:12px 18px;
+      border-radius:var(--btn-radius);
+      font-weight:600;
+      cursor:pointer;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+    }
+    button.ghost{
+      background:transparent;
+      border:1px solid #ddd;
+      padding:10px 12px;
+      border-radius:10px;
+      cursor:pointer;
+      color:var(--dark);
     }
 
-    .copy-section {
-      margin-top: 15px;
+    .note{
+      font-size:13px;
+      color:var(--muted);
+      margin-bottom:12px;
     }
 
-    .copy-success {
-      margin-top: 10px;
-      color: #00ff99;
-      display: none;
+    .qr-wrap{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+      padding:12px 0 4px 0;
     }
 
-    @media screen and (max-width: 480px) {
-      h1 {
-        font-size: 22px;
-      }
+    .qr-box{
+      width:250px;
+      min-height:250px;
+      background:#fbfbfb;
+      border-radius:12px;
+      border:1px dashed #eee;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px;
+    }
 
-      button {
-        font-size: 14px;
-      }
+    .qr-box img{
+      max-width:100%;
+      height:auto;
+      display:block;
+    }
+
+    .meta{
+      max-width:220px;
+      text-align:left;
+    }
+    .meta b{display:block;font-size:14px;color:var(--dark); margin-bottom:6px;}
+    .pair-code{
+      display:inline-block;
+      background:#f3f4f6;
+      padding:10px 12px;
+      border-radius:10px;
+      font-weight:700;
+      letter-spacing:1px;
+    }
+
+    .status{
+      margin-top:12px;
+      font-size:14px;
+      color:var(--muted);
+    }
+
+    .links{
+      margin-top:18px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      align-items:center;
+    }
+    .links a{
+      width:90%;
+      max-width:420px;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:10px;
+      color:#fff;
+      font-weight:600;
+      justify-content:center;
+    }
+    .links .main { background: var(--yellow); color:#000; }
+    .links .dashboard { background: var(--green); }
+    .links .owner { background:#006400; }
+
+    footer{
+      text-align:center;
+      margin-top:18px;
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    @media(max-width:520px){
+      .qr-box{ width:200px; min-height:200px;}
+      .meta{ max-width:100%;}
+      .links a{ width:100%;}
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>ANYWAY MD PAIRING CODE</h1>
-    <p>Created by Anyway Tech | <a href="https://anywayboost.com" style="color: #00ffff;">Visit Website</a></p>
 
-    <input type="text" id="numberInput" placeholder="Enter your phone number e.g. 2556XXXXXXXX" />
-    <button id="getCodeBtn">Get Pair Code</button>
+  <header>ANYWAY MD PAIRING</header>
 
-    <div class="copy-section" id="copySection" style="display: none;">
-      <p>Code: <span id="pairCode" style="font-weight: bold;"></span></p>
-      <button onclick="copyCode()">Copy</button>
-      <p class="copy-success" id="copySuccess">Code copied!</p>
+  <main class="wrap" role="main">
+    <h2><i class="fa-solid fa-link"></i> Pair Your Device</h2>
+    <p class="lead">Ingiza namba yako (format: 2557XXXXXXXX) au upload VCF. Tutakuletea QR / Pair Code hapa.</p>
+
+    <!-- FORM (uploads to /getpair). Server should return JSON with qr (dataUrl) and pairCode -->
+    <form id="pairForm" class="row" onsubmit="return false;">
+      <input id="phone" name="phone" type="text" placeholder="Enter phone (e.g. 2557XXXXXXX)" required />
+      <button id="getPairBtn" class="primary"><i class="fa-solid fa-key"></i> Get Pair Code</button>
+
+      <!-- optional file upload for vcf -->
+      <input id="vcffile" name="vcffile" type="file" accept=".vcf" style="margin-top:6px; width:100%"/>
+    </form>
+
+    <div class="note">Notebook: Server endpoint <code>/getpair</code> is expected. This page will POST form-data and show the QR + Pair Code returned.</div>
+
+    <section class="qr-wrap" aria-live="polite">
+      <div class="qr-box" id="qrBox">
+        <div id="qrPlaceholder" style="text-align:center;color:#9aa4ab;">
+          <i class="fa-solid fa-qrcode" style="font-size:42px"></i>
+          <div style="margin-top:8px;font-size:13px;color:var(--muted)">QR will appear here</div>
+        </div>
+      </div>
+
+      <div class="meta">
+        <b>Pair Code</b>
+        <div class="pair-code" id="pairCode">-- -- -- --</div>
+
+        <div class="status" id="pairStatus">Status: <span id="statusText">waiting</span></div>
+      </div>
+    </section>
+
+    <div style="display:flex;gap:10px;justify-content:center;margin-top:14px;flex-wrap:wrap;">
+      <button id="copyBtn" class="ghost" title="Copy pair code"><i class="fa-regular fa-copy"></i> Copy</button>
+      <a href="main.html" class="ghost" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
     </div>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <div class="links" style="margin-top:18px;">
+      <a class="main" href="https://anywayboost.com" target="_blank"><i class="fa-solid fa-globe"></i> AnywayBoost Website</a>
+      <a class="dashboard" href="https://github.com/anywaytech2/ANYWAY-XMD" target="_blank"><i class="fa-brands fa-github"></i> Bot Repo</a>
+      <a class="owner" href="https://wa.me/255678892560" target="_blank"><i class="fa-solid fa-user"></i> Owner Contact</a>
+    </div>
+
+    <footer>Created by <strong>Anyway Tech</strong> • Keep your session secure — don't share your pair code.</footer>
+  </main>
+
   <script>
-    const numberInput = document.getElementById("numberInput");
-    const getCodeBtn = document.getElementById("getCodeBtn");
-    const pairCode = document.getElementById("pairCode");
-    const copySection = document.getElementById("copySection");
-    const copySuccess = document.getElementById("copySuccess");
+    // Helper: Show messages in status
+    const statusText = document.getElementById('statusText');
+    const pairCodeEl = document.getElementById('pairCode');
+    const qrBox = document.getElementById('qrBox');
+    const qrPlaceholder = document.getElementById('qrPlaceholder');
+    const copyBtn = document.getElementById('copyBtn');
+    const getPairBtn = document.getElementById('getPairBtn');
+    const pairForm = document.getElementById('pairForm');
 
-    getCodeBtn.addEventListener("click", async () => {
-      const num = numberInput.value.trim().replace(/\D/g, '');
-      if (!num || num.length < 8) {
-        alert("Enter a valid WhatsApp number");
+    copyBtn.addEventListener('click', () => {
+      const code = pairCodeEl.textContent.trim();
+      if(!code || code.includes('--')) return alert('No pair code to copy.');
+      navigator.clipboard?.writeText(code).then(()=> alert('Pair code copied'));
+    });
+
+    // Submit handler - sends form-data to /getpair
+    getPairBtn.addEventListener('click', async () => {
+      const phone = document.getElementById('phone').value.trim();
+      const fileInput = document.getElementById('vcffile');
+
+      if(!phone && !fileInput.files.length){
+        alert('Ingiza namba au chagua .vcf file kisha jaribu tena.');
         return;
       }
+
+      // disable button while processing
+      getPairBtn.disabled = true;
+      getPairBtn.textContent = 'Processing...';
+      statusText.textContent = 'requesting';
+
       try {
-        const res = await axios.get(`/code?number=${num}`);
-        const code = res.data.code ?? "Unavailable";
-        pairCode.textContent = code;
-        copySection.style.display = "block";
-        copySuccess.style.display = "none";
-      } catch {
-        alert("Failed to retrieve code. Try again.");
+        const fd = new FormData();
+        if(phone) fd.append('phone', phone);
+        if(fileInput.files.length) fd.append('vcffile', fileInput.files[0]);
+
+        // POST to /getpair (adjust path if your server uses another route)
+        const resp = await fetch('/getpair', {
+          method: 'POST',
+          body: fd
+        });
+
+        if(!resp.ok) {
+          const txt = await resp.text();
+          throw new Error(txt || 'Server error');
+        }
+
+        const data = await resp.json();
+
+        // Expect data.qr (data:image/png;base64...) and data.pairCode
+        if(data.qr){
+          // remove placeholder and show image
+          qrBox.innerHTML = '<img alt="QR Code" id="qrImg" src="'+data.qr+'">';
+        } else {
+          qrBox.innerHTML = '<div style="color:'+getComputedStyle(document.documentElement).getPropertyValue('--muted')+'">No QR returned</div>';
+        }
+
+        if(data.pairCode){
+          pairCodeEl.textContent = data.pairCode;
+        } else {
+          pairCodeEl.textContent = '-- -- -- --';
+        }
+
+        statusText.textContent = data.status ?? 'waiting';
+        // If server provides a poll endpoint for status, you can start polling:
+        if(data.pollToken){
+          startPollingStatus(data.pollToken);
+        }
+
+      } catch (err) {
+        console.error(err);
+        alert('Error: ' + (err.message || 'Unknown'));
+        statusText.textContent = 'error';
+      } finally {
+        getPairBtn.disabled = false;
+        getPairBtn.innerHTML = '<i class="fa-solid fa-key"></i> Get Pair Code';
       }
     });
 
-    function copyCode() {
-      const text = pairCode.textContent;
-      navigator.clipboard.writeText(text).then(() => {
-        copySuccess.style.display = "block";
-      });
+    // Optional: example polling function for status updates
+    let pollInterval = null;
+    function startPollingStatus(token){
+      if(pollInterval) clearInterval(pollInterval);
+      pollInterval = setInterval(async () => {
+        try {
+          const res = await fetch('/pairstatus?token=' + encodeURIComponent(token));
+          if(!res.ok) return;
+          const d = await res.json();
+          if(d.status) statusText.textContent = d.status;
+          if(d.sessionId){
+            statusText.textContent = 'connected';
+            // show sessionId or do other actions, then stop polling
+            clearInterval(pollInterval);
+          }
+        } catch(e){
+          console.warn('poll error', e);
+        }
+      }, 3000);
     }
   </script>
 </body>
