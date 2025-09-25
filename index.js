@@ -30,6 +30,38 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'main.html'));
 });
 
+// --- WhatsApp Bot Session Setup ---
+const { useSingleFileAuthState, default: makeWASocket } = require('@whiskeysockets/baileys');
+const { state, saveState } = useSingleFileAuthState('./ANYWAY-XMD.json');
+
+async function startBot() {
+  const sock = makeWASocket({
+    auth: state,
+    printQRInTerminal: true, // optional, prints QR if needed
+  });
+
+  sock.ev.on('creds.update', saveState);
+
+  sock.ev.on('connection.update', (update) => {
+    const { connection, lastDisconnect } = update;
+    if(connection === 'close') {
+      console.log('❌ Bot disconnected, reconnecting...');
+      startBot();
+    } else if(connection === 'open') {
+      console.log('✅ ANYWAY-XMD Bot is online!');
+    }
+  });
+
+  // Example message handler
+  sock.ev.on('messages.upsert', async ({ messages }) => {
+    console.log('📩 New message received!');
+    // You can add your bot logic here
+  });
+}
+
+// Start bot
+startBot().catch(err => console.log('Bot start error:', err));
+
 // Start server
 app.listen(PORT, () => {
   console.log(`✅ ANYWAY-XMD UI running at: http://localhost:${PORT}`);
