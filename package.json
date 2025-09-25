@@ -15,15 +15,13 @@
   "author": "Anyway Tech",
   "license": "MIT",
   "dependencies": {
-    "@pro/baileys": "^1.0.0",
     "express": "^4.18.2",
     "qrcode": "^1.5.3",
     "awesome-phonenumber": "^2.64.0",
     "phone": "^3.1.30",
     "body-parser": "^1.20.2",
     "pastebin-js": "^1.2.1",
-    "pino": "^8.17.0",
-    "path": "^0.12.7"
+    "pino": "^8.17.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.3"
