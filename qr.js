@@ -4,57 +4,56 @@ const QRCode = require('qrcode');
 const fs = require('fs');
 let router = express.Router();
 const pino = require("pino");
-const {
-    default: makeWASocket,
-    useMultiFileAuthState,
-    delay,
-    makeCacheableSignalKeyStore,
-    Browsers,
-    jidNormalizedUser
-} = require("@whiskeysockets/baileys");
 const { upload } = require('./mega');
+
+// Dynamic import kwa Baileys (ESM only)
+const baileys = async () => await import("@whiskeysockets/baileys");
+
 function removeFile(FilePath) {
     if (!fs.existsSync(FilePath)) return false;
     fs.rmSync(FilePath, { recursive: true, force: true });
 }
+
 router.get('/', async (req, res) => {
     const id = makeid();
- //   let num = req.query.number;
     async function BMB_TECH_PAIR_CODE() {
+        const { 
+            useMultiFileAuthState,
+            default: makeWASocket,
+            delay,
+            Browsers,
+            jidNormalizedUser 
+        } = await baileys();
+
         const {
             state,
             saveCreds
         } = await useMultiFileAuthState('./temp/' + id);
+
         try {
-var items = ["Safari"];
-function selectRandomItem(array) {
-  var randomIndex = Math.floor(Math.random() * array.length);
-  return array[randomIndex];
-}
-var randomItem = selectRandomItem(items);
-            
+            var items = ["Safari"];
+            function selectRandomItem(array) {
+                var randomIndex = Math.floor(Math.random() * array.length);
+                return array[randomIndex];
+            }
+            var randomItem = selectRandomItem(items);
+
             let sock = makeWASocket({
-                	
-				auth: state,
-				printQRInTerminal: false,
-				logger: pino({
-					level: "silent"
-				}),
-				browser: Browsers.macOS("Desktop"),
-			});
-            
+                auth: state,
+                printQRInTerminal: false,
+                logger: pino({ level: "silent" }),
+                browser: Browsers.macOS("Desktop"),
+            });
+
             sock.ev.on('creds.update', saveCreds);
             sock.ev.on("connection.update", async (s) => {
-                const {
-                    connection,
-                    lastDisconnect,
-                    qr
-                } = s;
-              if (qr) await res.end(await QRCode.toBuffer(qr));
+                const { connection, lastDisconnect, qr } = s;
+                if (qr) await res.end(await QRCode.toBuffer(qr));
                 if (connection == "open") {
                     await delay(5000);
                     let data = fs.readFileSync(__dirname + `/temp/${id}/creds.json`);
                     let rf = __dirname + `/temp/${id}/creds.json`;
+
                     function generateRandomText() {
                         const prefix = "3EB";
                         const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -65,6 +64,7 @@ var randomItem = selectRandomItem(items);
                         }
                         return randomText;
                     }
+
                     const randomText = generateRandomText();
                     try {
                         const { upload } = require('./mega');
@@ -85,22 +85,23 @@ var randomItem = selectRandomItem(items);
 ━━━━━━━━━━━━━━━━━━━━━━━   
 
 > *© Powered by ANYWAY-XMD 🩵*`;
+
                         await sock.sendMessage(sock.user.id, {
-text: desc,
-contextInfo: {
-externalAdReply: {
-title: " 𝖇𝖔𝖙 𝖈𝖔𝖓𝖓𝖊𝖈𝖙𝖊𝖉",
-thumbnailUrl: "https://files.catbox.moe/wqc6mx.jpg",
-sourceUrl: "https://whatsapp.com/channel/0029VawO6hgF6sn7k3SuVU3z",
-mediaType: 1,
-renderLargerThumbnail: true
-}  
-}
-},
-{quoted:code })
+                            text: desc,
+                            contextInfo: {
+                                externalAdReply: {
+                                    title: " 𝖇𝖔𝖙 𝖈𝖔𝖓𝖓𝖊𝖈𝖙𝖊𝖉",
+                                    thumbnailUrl: "https://files.catbox.moe/wqc6mx.jpg",
+                                    sourceUrl: "https://whatsapp.com/channel/0029VawO6hgF6sn7k3SuVU3z",
+                                    mediaType: 1,
+                                    renderLargerThumbnail: true
+                                }
+                            }
+                        },
+                        { quoted: code });
                     } catch (e) {
-                            let ddd = sock.sendMessage(sock.user.id, { text: e });
-                            let desc = `*╭━━━━━━━━━━━━━━━━━━━━━╮
+                        let ddd = sock.sendMessage(sock.user.id, { text: e });
+                        let desc = `*╭━━━━━━━━━━━━━━━━━━━━━╮
 ┃  🩵 Anyway-xmd USER 🩵 ┃
 ╰━━━━━━━━━━━━━━━━━━━━━╯
 
@@ -113,20 +114,21 @@ renderLargerThumbnail: true
 ━━━━━━━━━━━━━━━━━━━━━━━ 
 
 > *© Powered Anyway-xmd 🩵*`;
-                            await sock.sendMessage(sock.user.id, {
-text: desc,
-contextInfo: {
-externalAdReply: {
-title: " 𝖒𝖉 𝖈𝖔𝖓𝖓𝖊𝖈𝖙𝖊𝖉 ✅  ",
-thumbnailUrl: "https://files.catbox.moe/wqc6mx.jpg",
-sourceUrl: "https://whatsapp.com/channel/0029VawO6hgF6sn7k3SuVU3z",
-mediaType: 2,
-renderLargerThumbnail: true,
-showAdAttribution: true
-}  
-}
-},
-{quoted:ddd })
+
+                        await sock.sendMessage(sock.user.id, {
+                            text: desc,
+                            contextInfo: {
+                                externalAdReply: {
+                                    title: " 𝖒𝖉 𝖈𝖔𝖓𝖓𝖊𝖈𝖙𝖊𝖉 ✅  ",
+                                    thumbnailUrl: "https://files.catbox.moe/wqc6mx.jpg",
+                                    sourceUrl: "https://whatsapp.com/channel/0029VawO6hgF6sn7k3SuVU3z",
+                                    mediaType: 2,
+                                    renderLargerThumbnail: true,
+                                    showAdAttribution: true
+                                }
+                            }
+                        },
+                        { quoted: ddd });
                     }
                     await delay(10);
                     await sock.ws.close();
@@ -149,9 +151,10 @@ showAdAttribution: true
     }
     await BMB_TECH_PAIR_CODE();
 });
+
 setInterval(() => {
     console.log("☘️ 𝗥𝗲𝘀𝘁𝗮𝗿𝘁𝗶𝗻𝗴 𝗽𝗿𝗼𝗰𝗲𝘀𝘀...");
     process.exit();
 }, 180000); //30min
+
 module.exports = router;
-            
