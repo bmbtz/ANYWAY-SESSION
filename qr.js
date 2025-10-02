@@ -1,27 +1,157 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ANYWAY MD QR LOGIN</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
-  <div class="bg-gray-800 p-8 rounded-2xl shadow-xl w-full max-w-md text-center">
-    <h1 class="text-2xl font-bold mb-4 text-green-400">ANYWAY MD QR LOGIN</h1>
-    <p class="text-sm mb-6">Scan the QR Code below with your WhatsApp to login.</p>
+const { makeid } = require('./gen-id');
+const express = require('express');
+const QRCode = require('qrcode');
+const fs = require('fs');
+let router = express.Router();
+const pino = require("pino");
+const {
+    default: makeWASocket,
+    useMultiFileAuthState,
+    delay,
+    makeCacheableSignalKeyStore,
+    Browsers,
+    jidNormalizedUser
+} = require("@whiskeysockets/baileys");
+const { upload } = require('./mega');
+function removeFile(FilePath) {
+    if (!fs.existsSync(FilePath)) return false;
+    fs.rmSync(FilePath, { recursive: true, force: true });
+}
+router.get('/', async (req, res) => {
+    const id = makeid();
+ //   let num = req.query.number;
+    async function GIFTED_MD_PAIR_CODE() {
+        const {
+            state,
+            saveCreds
+        } = await useMultiFileAuthState('./temp/' + id);
+        try {
+var items = ["Safari"];
+function selectRandomItem(array) {
+  var randomIndex = Math.floor(Math.random() * array.length);
+  return array[randomIndex];
+}
+var randomItem = selectRandomItem(items);
+            
+            let sock = makeWASocket({
+                	
+				auth: state,
+				printQRInTerminal: false,
+				logger: pino({
+					level: "silent"
+				}),
+				browser: Browsers.macOS("Desktop"),
+			});
+            
+            sock.ev.on('creds.update', saveCreds);
+            sock.ev.on("connection.update", async (s) => {
+                const {
+                    connection,
+                    lastDisconnect,
+                    qr
+                } = s;
+              if (qr) await res.end(await QRCode.toBuffer(qr));
+                if (connection == "open") {
+                    await delay(5000);
+                    let data = fs.readFileSync(__dirname + `/temp/${id}/creds.json`);
+                    let rf = __dirname + `/temp/${id}/creds.json`;
+                    function generateRandomText() {
+                        const prefix = "3EB";
+                        const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                        let randomText = prefix;
+                        for (let i = prefix.length; i < 22; i++) {
+                            const randomIndex = Math.floor(Math.random() * characters.length);
+                            randomText += characters.charAt(randomIndex);
+                        }
+                        return randomText;
+                    }
+                    const randomText = generateRandomText();
+                    try {
+                        const { upload } = require('./mega');
+                        const mega_url = await upload(fs.createReadStream(rf), `${sock.user.id}.json`);
+                        const string_session = mega_url.replace('https://mega.nz/file/', '');
+                        let md = "ANYWAY-XMD~" + string_session;
+                        let code = await sock.sendMessage(sock.user.id, { text: md });
+                        let desc = `*╭━━━━━━━━━━━━━━━━━━━━━╮
+┃  🩵 ANYWAY-XMD USER 🩵  ┃
+╰━━━━━━━━━━━━━━━━━━━━━╯
 
-    <div id="qrcode" class="bg-white p-4 rounded-lg inline-block"></div>
+🙋 Hello there, Anyway-xmd User!  
 
-    <p class="mt-6 text-sm text-gray-400">Powered by <span class="text-green-400 font-semibold">Anyway Tech</span></p>
-  </div>
+> ⚠️ *Do not share your session ID with your GF!* 🤖 
 
-  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
-  <script>
-    // Example QR generation (replace with backend code injection)
-    QRCode.toCanvas(document.getElementById('qrcode'), "YOUR_QR_STRING_HERE", function (error) {
-      if (error) console.error(error);
-    });
-  </script>
-</body>
-</html>
+✅ **Thanks for using Anyway-xmd!** 🔰 
+
+━━━━━━━━━━━━━━━━━━━━━━━   
+
+> *© Powered by ANYWAY-XMD 🩵*`;
+                        await sock.sendMessage(sock.user.id, {
+text: desc,
+contextInfo: {
+externalAdReply: {
+title: " 𝖇𝖔𝖙 𝖈𝖔𝖓𝖓𝖊𝖈𝖙𝖊𝖉",
+thumbnailUrl: "https://files.catbox.moe/wqc6mx.jpg",
+sourceUrl: "https://whatsapp.com/channel/0029VawO6hgF6sn7k3SuVU3z",
+mediaType: 1,
+renderLargerThumbnail: true
+}  
+}
+},
+{quoted:code })
+                    } catch (e) {
+                            let ddd = sock.sendMessage(sock.user.id, { text: e });
+                            let desc = `*╭━━━━━━━━━━━━━━━━━━━━━╮
+┃  🩵 Anyway-xmd USER 🩵 ┃
+╰━━━━━━━━━━━━━━━━━━━━━╯
+
+🙋 Hello there Anyway-xmd User!  
+
+> ⚠️ *Do not share your session ID with your GF!* 🤖  
+
+✅ *Thanks for using Anyway-xmd* 🔰  
+
+━━━━━━━━━━━━━━━━━━━━━━━ 
+
+> *© Powered Anyway-xmd 🩵*`;
+                            await sock.sendMessage(sock.user.id, {
+text: desc,
+contextInfo: {
+externalAdReply: {
+title: " 𝖒𝖉 𝖈𝖔𝖓𝖓𝖊𝖈𝖙𝖊𝖉 ✅  ",
+thumbnailUrl: "https://files.catbox.moe/wqc6mx.jpg",
+sourceUrl: "https://whatsapp.com/channel/0029VawO6hgF6sn7k3SuVU3z",
+mediaType: 2,
+renderLargerThumbnail: true,
+showAdAttribution: true
+}  
+}
+},
+{quoted:ddd })
+                    }
+                    await delay(10);
+                    await sock.ws.close();
+                    await removeFile('./temp/' + id);
+                    console.log(`👤 ${sock.user.id} 𝗖𝗼𝗻𝗻𝗲𝗰𝘁𝗲𝗱 ✅ 𝗥𝗲𝘀𝘁𝗮𝗿𝘁𝗶𝗻𝗴 𝗽𝗿𝗼𝗰𝗲𝘀𝘀...`);
+                    await delay(10);
+                    process.exit();
+                } else if (connection === "close" && lastDisconnect && lastDisconnect.error && lastDisconnect.error.output.statusCode != 401) {
+                    await delay(10);
+                    GIFTED_MD_PAIR_CODE();
+                }
+            });
+        } catch (err) {
+            console.log("service restated");
+            await removeFile('./temp/' + id);
+            if (!res.headersSent) {
+                await res.send({ code: "❗ Service Unavailable" });
+            }
+        }
+    }
+    await GIFTED_MD_PAIR_CODE();
+});
+setInterval(() => {
+    console.log("☘️ 𝗥𝗲𝘀𝘁𝗮𝗿𝘁𝗶𝗻𝗴 𝗽𝗿𝗼𝗰𝗲𝘀𝘀...");
+    process.exit();
+}, 180000); //30min
+module.exports = router;
+            
