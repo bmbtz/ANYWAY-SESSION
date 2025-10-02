@@ -1,38 +1,29 @@
 const express = require('express');
 const app = express();
-const path = require('path');
+__path = process.cwd()
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 8000;
-
-// Import QR and Pair routes
-const qrRoute = require('./qr');
-const codeRoute = require('./pair');
-
+let server = require('./qr'),
+    code = require('./pair');
 require('events').EventEmitter.defaultMaxListeners = 500;
-
-// Middleware
+app.use('/server', server);
+app.use('/code', code);
+app.use('/pair',async (req, res, next) => {
+res.sendFile(__path + '/pair.html')
+})
+app.use('/qr',async (req, res, next) => {
+res.sendFile(__path + '/qr.html')
+})
+app.use('/',async (req, res, next) => {
+res.sendFile(__path + '/main.html')
+})
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// Static public assets
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Routes
-app.use('/qr', qrRoute);
-app.use('/code', codeRoute);
-
-// HTML Pages
-app.get('/pair', (req, res) => {
-  res.sendFile(path.join(__dirname, 'pair.html'));
-});
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'main.html'));
-});
-
-// Start server
 app.listen(PORT, () => {
-  console.log(`✅ ANYWAY-XMD UI running at: http://localhost:${PORT}`);
-});
+    console.log(`
+Don't Forget To Give Star Ladybug-MD
 
-module.exports = app;
+ Server running on http://localhost:` + PORT)
+})
+
+module.exports = app
