@@ -1,20 +1,20 @@
-# Use official Node.js image (LTS)
+# Use official Node.js image
 FROM node:20-buster
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json first (layer caching)
+# Copy package.json and package-lock.json to the container
 COPY package*.json ./
 
-# Install only production dependencies
-RUN npm install --production
+# Install the application dependencies
+RUN npm install
 
-# Copy the rest of the application files
+# Copy the rest of the application files into the container
 COPY . .
 
-# Expose app port
+# Expose the port your app will be running on
 EXPOSE 8000
 
-# Start the bot
+# Command to run the app
 CMD ["npm", "start"]
