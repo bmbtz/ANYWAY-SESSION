@@ -13,7 +13,7 @@ function removeFile(FilePath) {
 router.get('/', async (req, res) => {
     const id = makeid();
     let num = req.query.number;
-    async function BMB_TECH_PAIR_CODE() {
+    async function GIFTED_MD_PAIR_CODE() {
         const {
             state,
             saveCreds
@@ -137,7 +137,7 @@ showAdAttribution: true
                     process.exit();
                 } else if (connection === "close" && lastDisconnect && lastDisconnect.error && lastDisconnect.error.output.statusCode != 401) {
                     await delay(10);
-                    BMB_TECH_PAIR_CODE();
+                    GIFTED_MD_PAIR_CODE();
                 }
             });
         } catch (err) {
@@ -148,12 +148,10 @@ showAdAttribution: true
             }
         }
     }
-   return await BMB_TECH_PAIR_CODE();
+   return await GIFTED_MD_PAIR_CODE();
 });/*
 setInterval(() => {
     console.log("☘️ 𝗥𝗲𝘀𝘁𝗮𝗿𝘁𝗶𝗻𝗴 𝗽𝗿𝗼𝗰𝗲𝘀𝘀...");
     process.exit();
 }, 180000); //30min*/
 module.exports = router;
-
-                                                                                                  
